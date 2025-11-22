@@ -3,21 +3,20 @@ import { users } from '~~/server/database/schema/users';
 import bcrypt from 'bcryptjs';
 
 interface SetupBody {
-    email: string;
+    username: string;
     password: string;
 }
 
 export default defineEventHandler(async (event) => {
     const body = await readBody<SetupBody>(event);
 
-    if (!body.email || !body.password) {
+    if (!body.username || !body.password) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Email and password are required',
+            statusMessage: 'Username and password are required',
         });
     }
 
-    // Check if any user already exists
     const result = await db.select({ id: users.id }).from(users).limit(1);
     if (result.length > 0) {
         throw createError({
@@ -26,23 +25,15 @@ export default defineEventHandler(async (event) => {
         });
     }
 
-    // Optional: basic email format check
-    if (!body.email.includes('@')) {
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'Invalid email',
-        });
-    }
-
     const passwordHash = await bcrypt.hash(body.password, 10);
 
     const inserted = await db
         .insert(users)
         .values({
-            email: body.email,
+            username: body.username,
             passwordHash,
         })
-        .returning({ id: users.id, email: users.email });
+        .returning({ id: users.id, email: users.username });
 
     const user = inserted[0];
 
