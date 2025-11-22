@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     '@nuxt/test-utils',
     '@nuxt/ui',
-    '@nuxt/image'
+    '@nuxt/image',
+    'nuxt-auth-utils'
   ],
   css: ['~/assets/css/main.css']
 })
