@@ -7,12 +7,14 @@ if (!status.value) {
   await navigateTo('/setup');
 }
 
+const { user } = useUserSession()
+
 // Once user exists, this page becomes your dashboard / daily view.
 </script>
 
 <template>
   <div>
     <h1 class="text-2xl font-bold">Tessera</h1>
-    <p>Dashboard coming soon.</p>
+    <p>{{ user?.username }}</p>
   </div>
 </template>
