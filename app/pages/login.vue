@@ -3,7 +3,6 @@ import * as z from 'zod'
 import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui'
 const { loggedIn, fetch: refreshSession } = useUserSession()
 
-
 definePageMeta({
     alias: ['/signin'],
 });

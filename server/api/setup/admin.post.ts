@@ -37,8 +37,6 @@ export default defineEventHandler(async (event) => {
 
     const user = inserted[0];
 
-    // For now, no full session system – we just return the user.
-    // Later you’ll create a session token + cookie here.
     return {
         user,
     };
