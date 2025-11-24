@@ -12,5 +12,11 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-auth-utils'
   ],
-  css: ['~/assets/css/main.css']
+  css: ['~/assets/css/main.css'],
+  ui: {
+    colors: {
+      primary: 'blue',
+      secondary: 'purple',
+    }
+  }
 })
